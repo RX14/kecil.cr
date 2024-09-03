@@ -21,7 +21,9 @@ abstract class Object
   # typeof(value) # => Int32 | String
   # ```
   @[Primitive(:class)]
-  def class : Class
+  def class
+    # This method can't have a return type restriction: it erases the type
+    # information of the class returned.
   end
 
   # Case equality.
