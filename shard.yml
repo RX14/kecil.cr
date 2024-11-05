@@ -1,0 +1,10 @@
+name: kecil
+version: 0.1.0
+
+authors:
+  - Stephanie Wilde-Hobbs <hi@stephanie.is>
+
+description: |
+  Embedded-focussed standard library for Crystal
+
+license: Apache-2.0
