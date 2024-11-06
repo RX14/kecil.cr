@@ -30,4 +30,18 @@ abstract struct Enum
   def ==(other : self) : Bool
     value == other.value
   end
+
+  def self.new!(value : Int) : self
+    from_int?(value) || panic("Unknown enum value")
+  end
+
+  def self.from_int?(value : Int) : self?
+    {% if @type.annotation(Flags) %}
+      {% raise "Not Implemented" %}
+    {% else %}
+      {% for member in @type.constants %}
+        return new({{@type.constant(member)}}) if {{@type.constant(member)}}.to_int == value
+      {% end %}
+    {% end %}
+  end
 end
