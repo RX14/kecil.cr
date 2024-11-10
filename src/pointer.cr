@@ -42,6 +42,36 @@ struct Pointer(T)
     new(0)
   end
 
+  # Returns the memory address pointed to by this pointer.
+  #
+  # ```
+  # ptr = Pointer(Int32).new(1234)
+  # ptr.address # => 1234
+  # ```
+  @[Primitive(:pointer_address)]
+  def address : UInt64
+  end
+
+  # Two pointers are equal if their `address` is the same.
+  def ==(other : Pointer(T)) : Bool
+    self.address == other.address
+  end
+
+  # Returns a new pointer whose address is this pointer's address
+  # incremented by `offset * sizeof(T)`.
+  #
+  # ```
+  # ptr = Pointer(Int32).new(1234)
+  # ptr.address # => 1234
+  #
+  # # An Int32 occupies four bytes
+  # ptr2 = ptr + 1
+  # ptr2.address # => 1238
+  # ```
+  @[Primitive(:pointer_add)]
+  def +(offset : Int64) : self
+  end
+
   # An AtomicOrdering can be attached to loads, stores, or fences to control the
   # ordering of memory operations seen by programs executing in parallel on the
   # same or other addresses.

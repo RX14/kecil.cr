@@ -26,6 +26,14 @@ abstract class Object
     # information of the class returned.
   end
 
+  # Returns `true` if this object is not equal to *other*.
+  #
+  # By default this method is implemented as `!(self == other)`.
+  # Override this in your object if there's a more efficient implementation.
+  def !=(other)
+    !(self == other)
+  end
+
   # Case equality.
   #
   # The `===` method is used in a `case ... when ... end` expression.
