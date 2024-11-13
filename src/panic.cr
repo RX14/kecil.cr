@@ -5,3 +5,8 @@
 def panic(cause : String) : NoReturn
   loop { }
 end
+
+# :nodoc:
+def raise(cause : String) : NoReturn
+  panic(cause)
+end
